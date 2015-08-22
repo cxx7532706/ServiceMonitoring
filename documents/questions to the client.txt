@@ -1,5 +1,0 @@
-questions to the client:
-
-1: when the administrator change the question of a survey, is it means that create a new version of survey or simply change it.
-
-2: also about the question change. when we export a report of a survey, should we display the latest version of the question or the 	
