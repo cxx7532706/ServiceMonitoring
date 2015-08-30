@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @survey.name %>
+</p>
+
+<p>
+  <strong>Reference number:</strong>
+  <%= @survey.reference_number %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @survey.version %>
+</p>
+
+<p>
+  <strong>Enable flg:</strong>
+  <%= @survey.enable_flg %>
+</p>
+
+<p>
+  <strong>Provider name:</strong>
+  <%= @survey.provider_name %>
+</p>
+
+<p>
+  <strong>Language avaliable:</strong>
+  <%= @survey.language_avaliable %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @survey.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @survey.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_survey_path(@survey) %> |
+<%= link_to 'Back', surveys_path %>
