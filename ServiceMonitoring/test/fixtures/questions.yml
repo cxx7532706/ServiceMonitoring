@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  q_type: MyString
+  language: MyString
+  title: MyString
+  options: MyString
+  create_date: 2015-08-30
+
+two:
+  q_type: MyString
+  language: MyString
+  title: MyString
+  options: MyString
+  create_date: 2015-08-30
