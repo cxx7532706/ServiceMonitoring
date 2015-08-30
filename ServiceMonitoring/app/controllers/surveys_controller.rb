@@ -1,5 +1,9 @@
 class SurveysController < InheritedResources::Base
 
+  #----------------------- Active Admin --------------------------#
+  # Scopes for admin index
+  scope :enabled, -> { where(enable_flg: true) }
+
   private
 
     def survey_params
