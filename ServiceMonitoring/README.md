@@ -1,4 +1,4 @@
-`# A Test Version of System with activeadmin #
+# A Test Version of System with activeadmin #
 
 This is my test version of our system. I just tried to use active_admin to build a basic admin system.
 
