@@ -1,5 +1,7 @@
 ActiveAdmin.register Question do
 
+  menu parent: 'Surveys'
+
   index do
     column :id
     column :q_type
