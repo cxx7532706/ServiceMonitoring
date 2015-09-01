@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :questions
+  resources :answers
+
+  resources :questions do
+    # Method to get a list of answers to a particular question
+    get 'list_answers' => 'questions#list_answers'
+  end
 
   root 'welcome#index'
   resources :surveys
