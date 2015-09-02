@@ -1,9 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  survey_id: 
+  question_id: MyString
+  int: MyString
+  client_ref: 
   content: MyString
-  question_id: 
 
 two:
+  survey_id: 
+  question_id: MyString
+  int: MyString
+  client_ref: 
   content: MyString
-  question_id: 
