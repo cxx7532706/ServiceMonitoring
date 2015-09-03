@@ -1,0 +1,33 @@
+<%= form_for(@answer) do |f| %>
+  <% if @answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+      <ul>
+      <% @answer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%if Answer.find(params[:id]).question_id.nil? %>
+    <%= f.hidden_field :survey_id, value:"null" %>
+    <%= f.hidden_field :question_id, value:params[:question] %>
+
+    <h2>Question: <%= Question.find(params[:question]).title %></h2>
+    <br>
+  <%end%>
+
+  <div class="field">
+    <%= f.label :client_ref %><br>
+    <%= f.text_field :client_ref %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -8,7 +8,9 @@
       <th>Title</th>
       <th>Options</th>
       <th>Create date</th>
-      <th colspan="3"></th>
+      <th colspan="3">Actions</th>
+      <th>List Answers</th>
+      <th>Post Answer</th>
     </tr>
   </thead>
 
@@ -23,6 +25,8 @@
         <td><%= link_to 'Show', question %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>
         <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'List of Answers', question_list_answers_path(question) %></td>
+        <td><%= link_to 'New Answer', new_answer_path(:question => question) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,3 +35,4 @@
 <br>
 
 <%= link_to 'New Question', new_question_path %>
+
