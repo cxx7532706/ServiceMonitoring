@@ -31,14 +31,19 @@
 </p>
 
 <p>
-  <strong>Start date:</strong>
-  <%= @survey.start_date %>
+  <strong>Created at:</strong>
+  <%= @survey.created_at %>
 </p>
 
 <p>
-  <strong>End date:</strong>
-  <%= @survey.end_date %>
+  <strong>Updated at:</strong>
+  <%= @survey.updated_at %>
 </p>
+<h2>Questions</h2>
+<%= render @survey.questions %>
+ 
+<h2>Add a question:</h2>
+<%= render 'questions/form' %>
 
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>

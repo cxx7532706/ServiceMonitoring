@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831120301) do
+ActiveRecord::Schema.define(version: 20150903050241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,15 +68,25 @@ ActiveRecord::Schema.define(version: 20150831120301) do
 
   add_index "feedbacks", ["survey_id"], name: "index_feedbacks_on_survey_id", using: :btree
 
-  create_table "questions", force: true do |t|
-    t.string   "q_type"
+  create_table "question_by_languages", force: true do |t|
     t.string   "language"
     t.string   "title"
     t.string   "options"
-    t.date     "create_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "question_id"
   end
+
+  add_index "question_by_languages", ["question_id"], name: "index_question_by_languages_on_question_id", using: :btree
+
+  create_table "questions", force: true do |t|
+    t.string   "q_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "survey_id"
+  end
+
+  add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
 
   create_table "surveys", force: true do |t|
     t.string   "name"
@@ -85,8 +95,6 @@ ActiveRecord::Schema.define(version: 20150831120301) do
     t.integer  "enable_flg"
     t.string   "provider_name"
     t.string   "language_avaliable"
-    t.date     "start_date"
-    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

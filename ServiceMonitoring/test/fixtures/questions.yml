@@ -2,14 +2,14 @@
 
 one:
   q_type: MyString
-  language: MyString
-  title: MyString
-  options: MyString
-  create_date: 2015-08-30
+  survey_id: MyString
+  created_at: 2015-09-03
+  updated_at: 2015-09-03
+  survey_id: 
 
 two:
   q_type: MyString
-  language: MyString
-  title: MyString
-  options: MyString
-  create_date: 2015-08-30
+  survey_id: MyString
+  created_at: 2015-09-03
+  updated_at: 2015-09-03
+  survey_id: 

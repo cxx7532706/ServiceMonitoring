@@ -6,23 +6,23 @@
 </p>
 
 <p>
-  <strong>Language:</strong>
-  <%= @question.language %>
+  <strong>Survey:</strong>
+  <%= @question.survey_id %>
 </p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @question.title %>
+  <strong>Created at:</strong>
+  <%= @question.created_at %>
 </p>
 
 <p>
-  <strong>Options:</strong>
-  <%= @question.options %>
+  <strong>Updated at:</strong>
+  <%= @question.updated_at %>
 </p>
 
 <p>
-  <strong>Create date:</strong>
-  <%= @question.create_date %>
+  <strong>Survey:</strong>
+  <%= @question.survey %>
 </p>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :question_by_languages
+  resources :questions
+  resources :surveys
   root 'blogs#index'
   resources :blogs
   # The priority is based upon order of creation: first created -> highest priority.

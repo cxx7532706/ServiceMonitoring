@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :surveys do 
+    resources :questions do
+      resources :question_by_languages
+    end
+  end
+
   resources :answers
 
   resources :questions do
@@ -7,8 +13,6 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
-  resources :surveys
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.

@@ -18,7 +18,7 @@ class SurveysControllerTest < ActionController::TestCase
 
   test "should create survey" do
     assert_difference('Survey.count') do
-      post :create, survey: { enable_flg: @survey.enable_flg, end_date: @survey.end_date, language_avaliable: @survey.language_avaliable, name: @survey.name, provider_name: @survey.provider_name, reference_number: @survey.reference_number, start_date: @survey.start_date, version: @survey.version }
+      post :create, survey: { created_at: @survey.created_at, enable_flg: @survey.enable_flg, language_avaliable: @survey.language_avaliable, name: @survey.name, provider_name: @survey.provider_name, reference_number: @survey.reference_number, updated_at: @survey.updated_at, version: @survey.version }
     end
 
     assert_redirected_to survey_path(assigns(:survey))
@@ -35,7 +35,7 @@ class SurveysControllerTest < ActionController::TestCase
   end
 
   test "should update survey" do
-    patch :update, id: @survey, survey: { enable_flg: @survey.enable_flg, end_date: @survey.end_date, language_avaliable: @survey.language_avaliable, name: @survey.name, provider_name: @survey.provider_name, reference_number: @survey.reference_number, start_date: @survey.start_date, version: @survey.version }
+    patch :update, id: @survey, survey: { created_at: @survey.created_at, enable_flg: @survey.enable_flg, language_avaliable: @survey.language_avaliable, name: @survey.name, provider_name: @survey.provider_name, reference_number: @survey.reference_number, updated_at: @survey.updated_at, version: @survey.version }
     assert_redirected_to survey_path(assigns(:survey))
   end
 
