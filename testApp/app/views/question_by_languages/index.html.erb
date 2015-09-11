@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Question By Languages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Language</th>
+      <th>Title</th>
+      <th>Options</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @question_by_languages.each do |question_by_language| %>
+      <tr>
+        <td><%= question_by_language.language %></td>
+        <td><%= question_by_language.title %></td>
+        <td><%= question_by_language.options %></td>
+        <td><%= question_by_language.created_at %></td>
+        <td><%= question_by_language.updated_at %></td>
+        <td><%= link_to 'Show', question_by_language %></td>
+        <td><%= link_to 'Edit', edit_question_by_language_path(question_by_language) %></td>
+        <td><%= link_to 'Destroy', question_by_language, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question by language', new_question_by_language_path %>

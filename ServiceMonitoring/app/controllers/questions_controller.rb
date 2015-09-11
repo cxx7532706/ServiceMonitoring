@@ -2,6 +2,7 @@ class QuestionsController < InheritedResources::Base
 	def create
 		@survey = Survey.find(params[:survey_id])
     	@question = @survey.questions.create(question_params)
+      flash[:success] = "Add one question"
     	redirect_to survey_path(@survey)
   	end
 

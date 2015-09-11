@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Q type:</strong>
+  <%= @question.q_type %>
+</p>
+
+<p>
+  <strong>Survey:</strong>
+  <%= @question.survey_id %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @question.created_at %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @question.updated_at %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

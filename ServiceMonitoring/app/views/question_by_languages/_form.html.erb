@@ -1,0 +1,41 @@
+<%= form_for(@question_by_language) do |f| %>
+  <% if @question_by_language.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question_by_language.errors.count, "error") %> prohibited this question_by_language from being saved:</h2>
+
+      <ul>
+      <% @question_by_language.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :language %><br>
+    <%= f.text_field :language %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :options %><br>
+    <%= f.text_field :options %>
+  </div>
+  <div class="field">
+    <%= f.label :created_at %><br>
+    <%= f.date_select :created_at %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_at %><br>
+    <%= f.date_select :updated_at %>
+  </div>
+  <div class="field">
+    <%= f.label :question_id %><br>
+    <%= f.text_field :question_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
