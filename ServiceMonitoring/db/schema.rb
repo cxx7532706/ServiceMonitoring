@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903050241) do
+ActiveRecord::Schema.define(version: 20150914094412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,22 +68,22 @@ ActiveRecord::Schema.define(version: 20150903050241) do
 
   add_index "feedbacks", ["survey_id"], name: "index_feedbacks_on_survey_id", using: :btree
 
-  create_table "question_by_languages", force: true do |t|
-    t.string   "language"
-    t.string   "title"
-    t.string   "options"
+  create_table "question_options", force: true do |t|
+    t.string   "option"
+    t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "question_id"
   end
 
-  add_index "question_by_languages", ["question_id"], name: "index_question_by_languages_on_question_id", using: :btree
+  add_index "question_options", ["question_id"], name: "index_question_options_on_question_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "q_type"
+    t.integer  "survey_id"
+    t.string   "language"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "survey_id"
   end
 
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
