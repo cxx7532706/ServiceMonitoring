@@ -20,6 +20,9 @@
 
   <div class="actions">
     <%= f.submit "Log in" %>
+    <% unless user_signed_in? %>
+        <%= button_tag "Register", :type => 'button', :onclick => "location.href = '#{new_user_path}'" %>
+    <% end %>
   </div>
 <% end %>
 
