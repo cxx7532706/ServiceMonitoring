@@ -1,12 +1,16 @@
 
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "ServiceMonitoring", '#', id: "logo" %>
+    <%= link_to 'ServiceMonitoring', '/', id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   '#' %></li>
-        <li><%= link_to "Help",   '#' %></li>
-        <li><%= link_to "Log in", '#' %></li>
+        <li><%= link_to 'Home',   '/' %></li>
+        <li><%= link_to 'Help',   '#' %></li>
+        <% if user_signed_in? %>
+            <li><%= link_to 'Log out', '/sign_out', method: :delete %></li>
+        <% else %>
+            <li><%= link_to 'Log in', '/sign_in' %></li>
+        <% end %>
       </ul> 
     </nav>
   </div>

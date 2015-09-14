@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users, :skip => [:admin, :sessions]
+  as :user do
+    get 'sign_in' => 'devise/sessions#new', :as => :new_user_session
+    post 'sign_in' => 'devise/sessions#create', :as => :user_session
+    delete 'sign_out' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+  resources :users
+
   resources :surveys do 
     resources :questions do
       resources :question_by_languages
