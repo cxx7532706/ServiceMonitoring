@@ -23,8 +23,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-# For website administration
-gem 'activeadmin', github: 'activeadmin'
+# For website authentication
 gem 'devise'
 
 # To serve static assets and login to Heroku
