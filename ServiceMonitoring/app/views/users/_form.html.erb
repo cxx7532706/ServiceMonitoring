@@ -15,9 +15,15 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
+
   <div class="field">
     <%= f.label :password %><br>
-    <%= f.text_field :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br>
+    <%= f.password_field :password_confirmation %>
   </div>
 
   <%= f.hidden_field :is_admin, value: 'false' %>
