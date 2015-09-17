@@ -1,7 +1,18 @@
-<% provide(:title, "welcome") %>
-<div class='center jumbotron'>
-	<h1>survey monitoring system</h1>
-	<h2>	
-		<%= link_to 'survey', surveys_path, class: 'btn btn-lg btn-primary'%>
-	</h2>
+<% provide(:title, "Welcome Page") %>
+<div class="page-header center">
+	<h1>
+		Welcome to the Survey Monitoring System 
+	<% if user_signed_in? %>
+		<br>
+		<small><%= current_user.email %></small>
+	</h1>	
+	<br>
+		<a class="btn btn-default btn-lg" href="/surveys" role="button">Access the Surveys</a>
+    <% else %>
+        <br>
+		<small>Please Login to Access the System</small>
+	</h1>
+	<br>
+	<a class="btn btn-default btn-lg" href="/sign_in" role="button">Log in</a>
+    <% end %>
 </div>

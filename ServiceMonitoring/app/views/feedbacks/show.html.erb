@@ -1,14 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-offset-2 col-md-8 col-md-offset-2"%>
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h2>Feedback Submitted</h2></div>
+    <div class="panel-body">
+		<p>
+		  <strong>Client Reference Number:</strong>
+		  <%= @feedback.reference_number %>
+		</p>
 
-<p>
-  <strong>Reference number:</strong>
-  <%= @feedback.reference_number %>
-</p>
-
-<p>
-  <strong>Survey:</strong>
-  <%= @feedback.survey_id %>
-</p>
-
-<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
-<%= link_to 'Back', feedbacks_path %>
+		<p>
+		  <strong>Survey:</strong>
+		  <%= @feedback.survey_id %>
+		</p>
+	</div>
+  </div>
+  	<%= link_to 'Back to Surveys List', surveys_path %>
+</div>

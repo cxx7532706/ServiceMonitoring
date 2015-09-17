@@ -1,35 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-offset-2 col-md-8 col-md-offset-2"%>
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h2><%= @survey.name %> Details</h2></div>
+    <div class="panel-body">
+      <p>
+        <strong>Name:</strong>
+        <%= @survey.name %>
+      </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @survey.name %>
-</p>
+      <p>
+        <strong>Version:</strong>
+        <%= @survey.version %>
+      </p>
 
-<p>
-  <strong>Version:</strong>
-  <%= @survey.version %>
-</p>
+      <p>
+        <strong>Provider name:</strong>
+        <%= @survey.provider_name %>
+      </p>
 
-<p>
-  <strong>Provider name:</strong>
-  <%= @survey.provider_name %>
-</p>
-
-<p>
-  <strong>Language avaliable:</strong>
-  <%= @survey.language_avaliable %>
-</p>
-<% @survey.questions.each do |question| %>
-  <p>
-    <strong>Question</strong>
-    <%= question.title %>
-  </p>
-  <p>
-  <% question.question_options.each do |option| %>
-    <p><%= option.option %></br></p>
-  <% end %>
-  </p>
-<% end %>
-
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+      <p>
+        <strong>Language avaliable:</strong>
+        <%= @survey.language_avaliable %>
+      </p>
+      <% @survey.questions.each do |question| %>
+        <p>
+          <strong>Question</strong>
+          <%= question.title %>
+        </p>
+        <p>
+        <% question.question_options.each do |option| %>
+          <p><%= option.option %></br></p>
+        <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to 'Edit', edit_survey_path(@survey) %> |
+  <%= link_to 'Back', surveys_path %>
+</div>
