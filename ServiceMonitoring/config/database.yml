@@ -21,7 +21,9 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
   host: localhost
-
+  username: postgres
+  password:
+  
 development:
   <<: *default
   database: ServiceMonitoring_development
@@ -84,5 +86,3 @@ test:
 production:
   <<: *default
   database: ServiceMonitoring_production
-  username: ServiceMonitoring
-  password: <%= ENV['SERVICEMONITORING_DATABASE_PASSWORD'] %>

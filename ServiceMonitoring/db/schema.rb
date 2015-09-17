@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914131111) do
+ActiveRecord::Schema.define(version: 20150915022818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,15 @@ ActiveRecord::Schema.define(version: 20150914131111) do
     t.integer  "question_id"
     t.integer  "client_ref"
     t.string   "content"
+    t.integer  "feedback_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "answers", ["feedback_id"], name: "index_answers_on_feedback_id", using: :btree
+
   create_table "feedbacks", force: true do |t|
-    t.integer  "reference_number"
-    t.datetime "submit_time"
+    t.string   "reference_number"
     t.integer  "survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,20 +37,20 @@ ActiveRecord::Schema.define(version: 20150914131111) do
 
   add_index "feedbacks", ["survey_id"], name: "index_feedbacks_on_survey_id", using: :btree
 
-  create_table "question_by_languages", force: true do |t|
-    t.string   "language"
-    t.string   "title"
-    t.string   "options"
+  create_table "question_options", force: true do |t|
+    t.string   "option"
+    t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "question_id"
   end
 
-  add_index "question_by_languages", ["question_id"], name: "index_question_by_languages_on_question_id", using: :btree
+  add_index "question_options", ["question_id"], name: "index_question_options_on_question_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "q_type"
     t.integer  "survey_id"
+    t.string   "language"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -57,7 +59,6 @@ ActiveRecord::Schema.define(version: 20150914131111) do
 
   create_table "surveys", force: true do |t|
     t.string   "name"
-    t.string   "reference_number"
     t.integer  "version"
     t.integer  "enable_flg"
     t.string   "provider_name"

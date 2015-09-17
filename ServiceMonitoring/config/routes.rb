@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
   resources :users
 
+  resources :feedbacks
+
   resources :surveys do 
     resources :questions do
       resources :question_by_languages
