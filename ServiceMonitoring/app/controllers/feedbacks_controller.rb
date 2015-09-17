@@ -1,5 +1,6 @@
 class FeedbacksController < InheritedResources::Base
 
+
 	def new
   	#Create a new feedback
   	@feedback = Feedback.new

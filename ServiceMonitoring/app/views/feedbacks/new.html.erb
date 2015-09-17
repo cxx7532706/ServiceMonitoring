@@ -16,13 +16,13 @@
     <%= f.text_field :reference_number %>
   </div>
   <% for question in @questions %>
-    <%= f.fields_for :answers do |answer| %>
-    <div class="answer_fields">
-    <div class="field">
-        <%= question.title %><br>
-        <%= answer.text_field :content %>
-    </div>
-    </div>
+  	<%= f.fields_for :answers do |answer| %>
+  	<div class="answer_fields">
+		<div class="field">
+  			<%= question.title %><br>
+  			<%= answer.text_field :content %>
+ 	 	</div>
+  	</div
     <%end%>
   <%end%>
   <div class="actions">
