@@ -27,6 +27,6 @@ class FeedbacksController < InheritedResources::Base
   private
 
     def feedback_params
-      params.require(:feedback).permit(:reference_number, :survey, :answers_attributes => [:content])
+      params.require(:feedback).permit(:reference_number, :survey_id, :answers_attributes => [:survey_id, :question_id, :content])
     end
 end

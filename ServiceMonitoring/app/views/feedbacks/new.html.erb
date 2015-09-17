@@ -15,14 +15,17 @@
     <%= f.label :reference_number %><br>
     <%= f.text_field :reference_number %>
   </div>
+  <%= f.hidden_field :survey_id, value:@survey.id %>
   <% for question in @questions %>
   	<%= f.fields_for :answers do |answer| %>
   	<div class="answer_fields">
+    <%= answer.hidden_field :survey_id, value:@survey.id %>
+    <%= answer.hidden_field :question_id, value:question.id %>
 		<div class="field">
   			<%= question.title %><br>
   			<%= answer.text_field :content %>
  	 	</div>
-  	</div
+  	</div>
     <%end%>
   <%end%>
   <div class="actions">
