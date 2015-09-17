@@ -20,6 +20,7 @@
         <td><%= survey.enable_flg %></td>
         <td><%= survey.provider_name %></td>
         <td><%= survey.language_avaliable %></td>
+        <td><%= link_to "fill in", new_feedback_path(:survey =>survey) %> </td>
         <td><%= link_to 'Show', survey %></td>
         <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
         <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>

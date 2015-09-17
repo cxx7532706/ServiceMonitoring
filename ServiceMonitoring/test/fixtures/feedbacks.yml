@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  reference_number: 1
-  submit_time: 2015-08-31 22:03:01
-  survey_id: 
+  reference_number: MyString
+  survey: 
 
 two:
-  reference_number: 1
-  submit_time: 2015-08-31 22:03:01
-  survey_id: 
+  reference_number: MyString
+  survey: 
