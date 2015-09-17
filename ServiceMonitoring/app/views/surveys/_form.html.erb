@@ -16,10 +16,6 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :reference_number %><br>
-    <%= f.text_field :reference_number %>
-  </div>
-  <div class="field">
     <%= f.label :version %><br>
     <%= f.number_field :version %>
   </div>
@@ -35,6 +31,12 @@
     <%= f.label :language_avaliable %><br>
     <%= f.text_field :language_avaliable %>
   </div>
+  <div>
+    <%= f.fields_for :questions do |builder| %>
+      <%= render "question_fields", :f => builder %>
+    <% end %>
+  </div>
+  <p><%= link_to_add_fields "Add Question", f, :questions %></p>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 20150914094412) do
 
   create_table "surveys", force: true do |t|
     t.string   "name"
-    t.string   "reference_number"
     t.integer  "version"
     t.integer  "enable_flg"
     t.string   "provider_name"
