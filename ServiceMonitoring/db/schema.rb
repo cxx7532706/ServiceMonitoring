@@ -54,9 +54,12 @@ ActiveRecord::Schema.define(version: 20150915022818) do
     t.integer  "question_id"
     t.integer  "client_ref"
     t.string   "content"
+    t.integer  "feedback_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "answers", ["feedback_id"], name: "index_answers_on_feedback_id", using: :btree
 
   create_table "feedbacks", force: true do |t|
     t.string   "reference_number"
