@@ -22,12 +22,7 @@
     <%= answer.hidden_field :survey_id, value:@survey.id %>
     <%= answer.hidden_field :question_id, value:question.id %>
 		<div class="field">
-  			<%= question.title %>
-        <p>
-           <% question.question_options.each do |option| %>
-           <p><%= option.option %></p>
-        <% end %>
-        <p>
+  			<%= question.title %><br>
   			<%= answer.text_field :content %>
  	 	</div>
   	</div>

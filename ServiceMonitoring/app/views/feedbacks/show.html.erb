@@ -10,5 +10,27 @@
   <%= @feedback.survey_id %>
 </p>
 
+<p>
+	<strong>Feedback_ID:</strong>
+	<%= @feedback.id %>
+</p>
+
+<% @survey.questions.each do |question| %>
+  <p>
+    <strong>Question</strong>
+    <%= question.title %>
+    <% @answers.each do |answer| %>
+    <% if answer.question_id == question.id %>
+    	<strong>Answer</strong>
+    	<%= answer.content %>
+    <% end %>
+    <% end %>
+
+    </p>
+ <% end -%>
+
+
+
+
 <%= link_to 'Edit', edit_feedback_path(@feedback) %> |
 <%= link_to 'Back', feedbacks_path %>
