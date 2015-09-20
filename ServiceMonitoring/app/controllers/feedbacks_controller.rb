@@ -32,6 +32,15 @@ class FeedbacksController < InheritedResources::Base
 
   end
 
+  def destroy
+  	@feedback = Feedback.find(params[:id])
+    @feedback.destroy
+    respond_to do |format|
+      format.html { redirect_to @feedback, notice: 'Feedback was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
 
