@@ -1,5 +1,7 @@
 class SurveysController < ApplicationController
+  before_action :check_signed_in
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  before_action :check_admin, except: [:index]
 
   # GET /surveys
   # GET /surveys.json
@@ -83,5 +85,13 @@ class SurveysController < ApplicationController
           question_options_attributes: 
             [:id, :option, :_destroy]
         ])
+    end
+
+    def check_signed_in
+      redirect_to root_path, alert: 'You need to sign in.' unless user_signed_in?
+    end
+
+    def check_admin
+      redirect_to root_path, alert: 'Permission denied.' unless user_is_admin?
     end
 end

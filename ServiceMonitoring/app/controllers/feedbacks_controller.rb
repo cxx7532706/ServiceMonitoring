@@ -1,5 +1,6 @@
 class FeedbacksController < InheritedResources::Base
-
+  before_action :check_signed_in
+  before_action :check_admin, :except => [:index, :show]
 
 	def new
   	#Create a new feedback
@@ -46,5 +47,13 @@ class FeedbacksController < InheritedResources::Base
 
     def feedback_params
       params.require(:feedback).permit(:id, :reference_number, :survey_id, :answers_attributes => [:survey_id, :question_id, :content])
+    end
+
+    def check_signed_in
+      redirect_to root_path, alert: 'You need to sign in.' unless user_signed_in?
+    end
+
+    def check_admin
+      redirect_to root_path, alert: 'Permission denied.' unless user_is_admin?
     end
 end

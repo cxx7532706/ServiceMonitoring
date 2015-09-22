@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
 
   # Check whether current user is admin or not
   def user_is_admin?
-    current_user.is_admin
+    user_signed_in? ? current_user.is_admin : false
   end
 end
