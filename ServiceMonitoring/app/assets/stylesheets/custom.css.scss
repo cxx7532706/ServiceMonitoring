@@ -47,23 +47,18 @@ p{
 	line-height: 1.7em;
 }
 
-footer {
-margin-top: 45px;
-padding-top: 5px;
-border-top: 1px solid #eaeaea; color: #777;
-a{
-color: #555; &:hover {
-          color: #222;
-        }
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 40px;
+  background-color: #f5f5f5;
+  p {
+  	margin-top: 10px;
+  	margin-left: 10px;
+  }
 }
-small {
-        text-align: center;
-      }
-ul {
-float: right; list-style: none; li {
-float: left;
-margin-left: 15px; }
-} }
 
 /* header */
 #logo {
