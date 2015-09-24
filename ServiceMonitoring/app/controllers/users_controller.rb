@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     @user.save ?
-        redirect_to(root_path, notice: 'Registration successfully!') :
+        redirect_to(root_path, notice: 'Registration successful!') :
         redirect_to(:back, alert: @user.errors.full_messages.join(', '))
   end
 

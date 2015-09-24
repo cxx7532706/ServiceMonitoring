@@ -1,34 +1,37 @@
-<h1>Listing surveys</h1>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h2>Listing Surveys</h2></div>
+    <div class="panel-body">
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Version</th>
+          <th>Enable flg</th>
+          <th>Provider name</th>
+          <th>Language avaliable</th>
+          <th colspan="4" class="center">Actions</th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Version</th>
-      <th>Enable flg</th>
-      <th>Provider name</th>
-      <th>Language avaliable</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @surveys.each do |survey| %>
-      <tr>
-        <td><%= survey.name %></td>
-        <td><%= survey.version %></td>
-        <td><%= survey.enable_flg %></td>
-        <td><%= survey.provider_name %></td>
-        <td><%= survey.language_avaliable %></td>
-        <td><%= link_to "fill in", new_feedback_path(:survey =>survey) %> </td>
-        <td><%= link_to 'Show', survey %></td>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+      <tbody>
+        <% @surveys.each do |survey| %>
+          <tr>
+            <td><%= survey.name %></td>
+            <td><%= survey.version %></td>
+            <td><%= survey.enable_flg %></td>
+            <td><%= survey.provider_name %></td>
+            <td><%= survey.language_avaliable %></td>
+            <td><%= link_to "New Feedback", new_feedback_path(:survey =>survey) %> </td>
+            <td><%= link_to 'Show', survey %></td>
+            <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
+            <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'New Survey', new_survey_path %>

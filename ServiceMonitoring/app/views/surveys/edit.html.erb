@@ -1,6 +1,12 @@
-<h1>Editing survey</h1>
+<div class="col-md-offset-2 col-md-8 col-md-offset-2"%>
+  <div class="panel panel-default">
+    <div class="panel-body">
+    <h1>Edit Survey <%= @survey.name %></h1>
 
-<%= render 'form' %>
+		<%= render 'form' %>
 
+   </div>
+  </div>
 <%= link_to 'Show', @survey %> |
 <%= link_to 'Back', surveys_path %>
+</div>
