@@ -1,27 +1,30 @@
-<h1>Listing feedbacks</h1>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h2>Listing Feedbacks</h2></div>
+    <div class="panel-body">
+    <!-- Table -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Reference number</th>
+          <th>Survey</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Reference number</th>
-      <th>Survey</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @feedbacks.each do |feedback| %>
-      <tr>
-        <td><%= feedback.reference_number %></td>
-        <td><%= feedback.survey_id %></td>
-        <td><%= link_to 'Show', feedback %></td>
-        <td><%= link_to 'Edit', edit_feedback_path(feedback) %></td>
-        <td><%= link_to 'Destroy', feedback, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Feedback', new_feedback_path %>
+      <tbody>
+        <% @feedbacks.each do |feedback| %>
+          <tr>
+            <td><%= feedback.reference_number %></td>
+            <td><%= feedback.survey_id %></td>
+            <td><%= link_to 'Show', feedback %></td>
+            <td><%= link_to 'Edit', edit_feedback_path(feedback) %></td>
+            <td><%= link_to 'Destroy', feedback, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
+</div>
+<%= link_to 'New Feedback', new_feedback_path %> |
+<%= link_to 'Back to Surveys List', surveys_path %>

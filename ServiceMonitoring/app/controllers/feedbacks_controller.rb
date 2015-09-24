@@ -27,7 +27,7 @@ class FeedbacksController < InheritedResources::Base
 
   def show
 
-  	@feedback = Feedback.find(params[:id])
+  @feedback = Feedback.find(params[:id])
 	@survey = Survey.find(@feedback.survey_id) 
 	@answers = @feedback.answers
 
