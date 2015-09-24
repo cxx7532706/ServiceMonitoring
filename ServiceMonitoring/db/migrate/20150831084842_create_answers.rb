@@ -4,7 +4,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.integer :survey_id
       t.integer :question_id
       t.string :content
-      t.references :feedback, index :true
+      t.references :feedback, index: true
 
       t.timestamps
     end
