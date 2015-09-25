@@ -21,6 +21,7 @@
     <%= f.hidden_field :survey_id, value:@survey.id %>
     <% for question in @questions %>
     	<%= f.fields_for :answers do |answer| %>
+      <%@anyoptions = 0%>
     	<div class="answer_fields">
       <%= answer.hidden_field :survey_id, value:@survey.id %>
       <%= answer.hidden_field :question_id, value:question.id %>
@@ -29,11 +30,12 @@
           <p>
              <% question.question_options.each do |option| %>
              <p><%= option.option %> 
+             <%@anyoptions = 1 %>
              <%= answer.radio_button :content, option.id %></p>
           <% end %>
           <p>
 
-          <% if question.q_type == 'text'%>
+          <% if question.q_type == 'text'|| @anyoptions == 0%>
     			   <%= answer.text_field :content %>
           <%end%>
    	 	</div>

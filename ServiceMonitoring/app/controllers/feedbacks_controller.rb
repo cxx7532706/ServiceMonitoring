@@ -9,6 +9,7 @@ class FeedbacksController < InheritedResources::Base
   	#Get the questions for the feedback
   	@survey = Survey.find(params[:survey])
   	@questions = @survey.questions
+    @anyoptions
   end
 
   def create
@@ -30,6 +31,7 @@ class FeedbacksController < InheritedResources::Base
   @feedback = Feedback.find(params[:id])
 	@survey = Survey.find(@feedback.survey_id) 
 	@answers = @feedback.answers
+  @anyoptions
 
   end
 
