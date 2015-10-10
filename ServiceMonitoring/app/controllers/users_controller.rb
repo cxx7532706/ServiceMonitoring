@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @is_admin = false
   end
 
   def edit
