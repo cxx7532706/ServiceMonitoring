@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     delete 'sign_out' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
   resources :users
+  get 'admin/sign_up' => 'users#new_admin', :as => :admin_sign_up
 
   resources :feedbacks
 
