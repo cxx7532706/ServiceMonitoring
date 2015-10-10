@@ -44,7 +44,3 @@ function disabled_change(div_obj, flg) {
 }
 
 
-$( document ).ready(function() {
-    hide_div($(".multiple_choice"));
-    hide_div($(".text_answer"));
-});
