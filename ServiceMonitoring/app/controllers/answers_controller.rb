@@ -1,6 +1,6 @@
 class AnswersController < InheritedResources::Base
   before_action :check_signed_in
-  before_action :check_admin, except: [:index, :show]
+  before_action :check_admin
 
   private
 

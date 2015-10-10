@@ -1,6 +1,6 @@
 class FeedbacksController < InheritedResources::Base
-  before_action :check_signed_in
-  before_action :check_admin, :except => [:index, :show]
+  before_action :check_signed_in, :except => [:new, :create]
+  before_action :check_admin, :except => [:new, :create]
 
 	def new
   	#Create a new feedback
