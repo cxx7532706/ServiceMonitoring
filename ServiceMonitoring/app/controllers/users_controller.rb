@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_signed_in, :only => [:new]
+  before_action :check_admin, :only => [:new]
 
   # respond_to :html
 
@@ -50,5 +52,13 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :is_admin)
+    end
+
+    def check_signed_in
+      redirect_to root_path, alert: 'You need to sign in.' unless user_signed_in?
+    end
+
+    def check_admin
+      redirect_to root_path, alert: 'Permission denied.' unless user_is_admin?
     end
 end

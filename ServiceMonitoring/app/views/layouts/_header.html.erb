@@ -19,18 +19,21 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in as 
                 <!-- Advisor/Administrator -->
                 <% if current_user.is_admin? %>
-                Administrator 
+                    Administrator
                 <%else%>
-                Advisor 
+                    Advisor
                 <%end%>
                 <%= current_user.email %><span class="caret"></span></a>
                  <ul class="dropdown-menu">
+                   <% if user_is_admin? %>
+                       <li><%= link_to 'Create Advisor', new_user_path %></li>
+                   <% end %>
                     <li><%= link_to 'Log out', '/sign_out', method: :delete %></li>
                   </ul>
                 </li>
           <% else %>
               <li><%= link_to 'Log in', '/sign_in' %></li>
-              <li><%= link_to "Sign up as Advisor", new_user_path %></li>
+              <li><%= link_to 'Sign up as Administrator', new_admin_path %></li>
           <% end %>
         </ul> 
       </nav>
