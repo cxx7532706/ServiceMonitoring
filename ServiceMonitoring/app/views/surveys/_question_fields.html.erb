@@ -1,7 +1,6 @@
 <div class="fields">
-    <%= select_tag(:q_type,
-                   options_for_select([['one answer multiple choice', 1],['multiple answer multiple choice', 2],['text',3]]),
-                   :onchange => "change_q_type(this)")%>
+<%= f.select :q_type,[['one answer multiple choice', 1], ['multiple answer multiple choice', 2], ['text', 3]] , {},
+                :onChange=>"change_q_type(this)" %>
     <div class="one_choice">
       <%= f.label :title, "Question" %><br />
       <%= f.text_area :title, :rows => 3 %><br />
@@ -12,7 +11,7 @@
       <% end %>
       <p><%= link_to_add_fields "Add option", f, :question_options %></p>
     </div>
-    <div class="multiple_choice" style="display: none" diabled='true'>
+    <div class="multiple_choice" style="display: none" disabled='true'>
       <%= f.label :title, "Question" %><br />
       <%= f.text_area :title, :rows => 3 %><br />
       <%= f.hidden_field :_destroy %>
@@ -22,7 +21,7 @@
       <% end %>
       <p><%= link_to_add_fields "Add option", f, :question_options %></p>
     </div>
-    <div class="text_answer" style="display: none" diabled='true'>
+    <div class="text_answer" style="display: none" disabled='true'>
       <%= f.label :title, "Question" %><br />
       <%= f.text_area :title, :rows => 3 %><br />
     </div>
