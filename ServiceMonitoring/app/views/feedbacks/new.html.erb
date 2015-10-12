@@ -21,21 +21,34 @@
     <%= f.hidden_field :survey_id, value:@survey.id %>
     <% for question in @questions %>
     	<%= f.fields_for :answers do |answer| %>
-      <%@anyoptions = 0%>
     	<div class="answer_fields">
       <%= answer.hidden_field :survey_id, value:@survey.id %>
       <%= answer.hidden_field :question_id, value:question.id %>
   		<div class="field">
     			<%= question.title %>
+
+          <% if question.q_type == '1' %>
           <p>
              <% question.question_options.each do |option| %>
              <p><%= option.option %> 
-             <%@anyoptions = 1 %>
              <%= answer.radio_button :content, option.id %></p>
           <% end %>
           <p>
+          <% end %>
 
-          <% if question.q_type == 'text'|| @anyoptions == 0%>
+          <% if question.q_type == '2'%>
+          <p>
+             <% question.question_options.each do |option| %>
+             <p>
+             <%= option.option%>
+             <%= check_box_tag 'chosen_ops[]',option.id%>
+             </p>
+             <%end%>
+
+          </p>>
+          <%end%>
+
+          <% if question.q_type == '3'%>
     			   <%= answer.text_field :content %>
           <%end%>
    	 	</div>
