@@ -31,6 +31,8 @@ class SurveysController < ApplicationController
   # POST /surveys.json
   def create
     @survey = Survey.new(survey_params)
+    @survey.version = "1"
+    @survey.enable_flg = "1"
 
     respond_to do |format|
       if @survey.save
@@ -47,7 +49,13 @@ class SurveysController < ApplicationController
   # PATCH/PUT /surveys/1.json
   def update
     respond_to do |format|
-      if @survey.update(survey_params)
+      survey1 = Survey.find(params[:id])
+      survey1.enable_flg = "0"
+      @survey = Survey.new(survey_params)
+      @survey.version = survey1.version.to_i + 1
+      @survey.enable_flg = "1"
+      if @survey.save
+        survey1.save
         format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
         format.json { render :show, status: :ok, location: @survey }
       else
@@ -79,11 +87,11 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name, :reference_number, :version, :enable_flg, :provider_name, :language_avaliable, 
-        questions_attributes: 
-        [:id, :q_type, :title, :_destroy, 
-          question_options_attributes: 
-            [:id, :option, :_destroy]
+      params.require(:survey).permit(:name, :reference_number, :version, :enable_flg, :provider_name, :language_avaliable,
+        questions_attributes:
+        [:q_type, :title, :_destroy,
+          question_options_attributes:
+            [:option, :_destroy]
         ])
     end
 

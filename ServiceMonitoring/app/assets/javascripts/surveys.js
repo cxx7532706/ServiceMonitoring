@@ -43,4 +43,25 @@ function disabled_change(div_obj, flg) {
     div_obj.find(':input').attr('disabled', flg);
 }
 
+$(document).ready(function() {
+    $(".fields select").each(function(){
+    var t = $(this).val();
+    if (t==1) {
+        show_div($(this).siblings(".one_choice").first());
+        hide_div($(this).siblings(".multiple_choice").first());
+        hide_div($(this).siblings(".text_answer").first());
+    }
 
+    if (t==2) {
+        hide_div($(this).siblings(".one_choice").first());
+        show_div($(this).siblings(".multiple_choice").first());
+        hide_div($(this).siblings(".text_answer").first());
+    }
+
+    if (t==3) {
+        hide_div($(this).siblings(".one_choice").first());
+        hide_div($(this).siblings(".multiple_choice").first());
+        show_div($(this).siblings(".text_answer").first());
+    }
+    });
+});
