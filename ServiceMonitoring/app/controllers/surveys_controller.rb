@@ -67,6 +67,19 @@ class SurveysController < ApplicationController
     end
   end
 
+  def excel
+    @survey = Survey.find(params[:id])
+    respond_to do |format|  
+    format.xls {   
+      send_data(xls_content_for(@survey),  
+                :type => "text/excel; charset=utf-8; header=present",  
+                :filename => "Report_Survey(#{@survey.name})_#{Time.now.strftime("%Y%m%d")}.xls")  
+    }  
+    format.html  {redirect_to surveys_url, notice: "Report export successful!"}
+    end  
+  end 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_survey
@@ -79,7 +92,7 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name, :reference_number, :version, :enable_flg, :provider_name, :language_avaliable, 
+      params.require(:survey).permit(:id, :name, :reference_number, :version, :enable_flg, :provider_name, :language_avaliable, :format,
         questions_attributes: 
         [:id, :q_type, :title, :_destroy, 
           question_options_attributes: 
@@ -94,4 +107,52 @@ class SurveysController < ApplicationController
     def check_admin
       redirect_to root_path, alert: 'Permission denied.' unless user_is_admin?
     end
-end
+
+    def xls_content_for(obj)
+      xls_report = StringIO.new  
+      book = Spreadsheet::Workbook.new  
+      @answers = Answer.all
+      sheet1 = book.create_worksheet :name => "Survey"  
+        
+      blue = Spreadsheet::Format.new :color => :blue, :weight => :bold, :size => 10  
+      sheet1.row(0).default_format = blue  
+      
+      sheet1.row(0).concat %w{Question Type Answers}  
+      count_row = 1  
+      obj.questions.each do |question|  
+        sheet1[count_row,0] = question.title
+        if question.q_type == '1' 
+          sheet1[count_row,1] = "Single Answer Mutiple Choises" 
+        elsif question.q_type == '2' 
+          sheet1[count_row,1] = "Mutiple Answers Mutiple CHoises"
+        elsif question.q_type == '3' 
+          sheet1[count_row,1] = "Text"
+        end
+        option_number = 1;
+        question.question_options.each do |option|
+          option_number += 1
+          answer_number = 0
+          @answers.each do |answer|
+            if option.id == answer.content.to_i
+              answer_number += 1
+            end
+          end
+          sheet1[count_row,option_number] = "#{option.option}(#{answer_number.to_s})"
+        end
+        option_number = 1;
+        if question.q_type == '3'
+          @answers.each do |answer|
+            if answer.question_id == question.id
+              option_number += 1
+              sheet1[count_row,option_number] = answer.content
+            end
+          end
+        end
+        count_row += 1
+      end
+      
+      book.write xls_report  
+      xls_report.string  
+    end
+
+  end
