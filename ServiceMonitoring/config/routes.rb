@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :surveys do 
     get 'excel', on: :member
+    get 'pdf', on: :member
     resources :questions do
       resources :question_by_languages
     end
