@@ -3,10 +3,10 @@
     <!-- Default panel contents -->
     <div class="panel-heading"><h2>Feedback Submitted</h2></div>
     <div class="panel-body">
-		<p>
-		  <strong>Client Reference Number:</strong>
-		  <%= @feedback.reference_number %>
-		</p>
+    <p>
+      <strong>Client Reference Number:</strong>
+      <%= @feedback.reference_number %>
+    </p>
 
     <p>
       <strong>Survey:</strong>
@@ -14,26 +14,34 @@
     </p>
 
     <p>
-    	<strong>Feedback_ID:</strong>
-    	<%= @feedback.id %>
+      <strong>Feedback_ID:</strong>
+      <%= @feedback.id %>
     </p>
 
     <% @survey.questions.each do |question| %>
       <p>
         <strong>Question</strong>
         <%= question.title %>
+        <strong>Answer</strong> 
         <% @answers.each do |answer| %>
         <% if answer.question_id == question.id %>
-        	<strong>Answer</strong>
-        	<% if question.q_type == 'choice' %>
-        		<% question.question_options.each do |option| %>   			
-    	   			<% if option.id == answer.content.to_i %>
-        	       		<%= option.option %>
-        	    	<%end%>
-        		<%end%>
-        		<% elsif question.q_type == 'text'%>
-        			<%= answer.content %>
-        	<%end%>
+          <% if question.q_type == '1' %>
+            <% question.question_options.each do |option| %>        
+              <% if option.id == answer.content.to_i %>
+                    <%= option.option %>
+                <%end%>
+            <%end%>
+            <%end%>
+            <%if question.q_type == '2' && answer.content != nil %>
+              <% question.question_options.each do |option| %>        
+                <% if option.id == answer.content.to_i %>
+                    <%= option.option %>
+                <%end%>
+              <%end%>
+            <%end%>
+            <% if question.q_type == '3' %>
+              <%= answer.content %>
+            <%end%>
         <% end %>
         <% end %>
 

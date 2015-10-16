@@ -14,8 +14,27 @@ class FeedbacksController < InheritedResources::Base
   def create
     @feedback = Feedback.new(feedback_params)
 
+
+
     respond_to do |format|
       if @feedback.save
+
+          @chosen_ops = params[:chosen_ops]
+          @answers = @feedback.answers
+          @survey = Survey.find(@feedback.survey_id)
+          @questions = @survey.questions
+          @questions.each do |question|
+            if question.q_type == '2'
+              question.question_options.each do |option|
+                @chosen_ops.each do |chosen_op|
+                  if option.id.to_s == chosen_op.to_s
+                    @feedback.answers.create(:survey_id => @survey.id, :question_id => question.id, :content => chosen_op)
+                  end
+                end
+              end
+            end
+          end
+
         format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
         format.json { render json: @feedback, status: :created, location: @feedback }
       else
@@ -24,6 +43,15 @@ class FeedbacksController < InheritedResources::Base
       end
     end
   end
+
+
+
+  def update
+    @ops = params[:chosen_ops]
+    
+    
+  end
+
 
   def show
 
@@ -46,7 +74,7 @@ class FeedbacksController < InheritedResources::Base
   private
 
     def feedback_params
-      params.require(:feedback).permit(:id, :reference_number, :survey_id, :answers_attributes => [:survey_id, :question_id, :content])
+      params.require(:feedback).permit(:id, :reference_number, :survey_id, :answers_attributes => [:survey_id, :question_id, :content, :all])
     end
 
     def check_signed_in

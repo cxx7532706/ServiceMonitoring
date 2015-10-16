@@ -26,14 +26,29 @@
       <%= answer.hidden_field :question_id, value:question.id %>
   		<div class="field">
     			<%= question.title %>
+
+          <% if question.q_type == '1' %>
           <p>
              <% question.question_options.each do |option| %>
              <p><%= option.option %> 
              <%= answer.radio_button :content, option.id %></p>
           <% end %>
           <p>
+          <% end %>
 
-          <% if question.q_type == 'text'%>
+          <% if question.q_type == '2'%>
+          <p>
+             <% question.question_options.each do |option| %>
+             <p>
+             <%= option.option%>
+             <%= check_box_tag 'chosen_ops[]',option.id%>
+             </p>
+             <%end%>
+
+          </p>>
+          <%end%>
+
+          <% if question.q_type == '3'%>
     			   <%= answer.text_field :content %>
           <%end%>
    	 	</div>
