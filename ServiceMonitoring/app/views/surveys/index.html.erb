@@ -26,10 +26,12 @@
             <td><%= link_to "Send Url", generate_url_survey_path(:id =>survey[:id]) %> </td>
             <td><%= link_to "New Feedback", new_feedback_path(:survey =>survey) %> </td>
             <td><%= link_to 'Show', survey %></td>
-            <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-            <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <td><%= link_to 'Get Excel Report',excel_survey_path(survey, :format => 'xls') %></td>
-            <td><%= link_to 'Get PDF Report', pdf_survey_path(survey, :format => 'pdf')%></td>>
+            <% if user_is_admin? %>
+                <td><%= link_to 'Get Excel Report',excel_survey_path(survey, :format => 'xls') %></td>
+                <td><%= link_to 'Get PDF Report', pdf_survey_path(survey, :format => 'pdf')%></td>>
+                <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
+                <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -37,5 +39,7 @@
   </div>
 </div>
 
-<%= link_to 'New Survey', new_survey_path %> | 
 <%= link_to 'Go to All Feedbacks', feedbacks_path %>
+<% if user_is_admin? %>
+    <%= link_to 'New Survey', new_survey_path %>
+<% end %>

@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
   before_action :check_signed_in
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
-  before_action :check_admin, except: [:index]
+  before_action :check_admin, except: [:index, :show]
 
   # GET /surveys
   # GET /surveys.json
