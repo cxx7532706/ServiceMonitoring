@@ -1,6 +1,6 @@
 class FeedbacksController < InheritedResources::Base
   before_action :check_signed_in
-  # before_action :check_admin, :except => [:index, :show]
+  before_action :check_admin, :except => [:index, :show]
 
   def new
     #Create a new feedback
@@ -82,15 +82,10 @@ class FeedbacksController < InheritedResources::Base
   end
 
   def destroy
-    @feedback = Feedback.find(params[:id])
-    if params[:id] ="1"
-      redirect_to root_path, alert: 'General Survey Cannot be destroyed'
-    else
-      @feedback.destroy
-      respond_to do |format|
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+    @feedback.destroy
+    respond_to do |format|
+      format.html { redirect_to @feedback, notice: 'Feedback was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

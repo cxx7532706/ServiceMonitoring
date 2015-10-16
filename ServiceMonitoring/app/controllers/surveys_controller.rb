@@ -70,10 +70,14 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1
   # DELETE /surveys/1.json
   def destroy
-    @survey.destroy
-    respond_to do |format|
-      format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
-      format.json { head :no_content }
+    if @survey.id == 1
+      redirect_to surveys_url, alert: 'General Survey cannot be destroyed'
+    else
+      @survey.destroy
+      respond_to do |format|
+        format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

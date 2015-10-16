@@ -6,3 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 User.create(email: 'admin@example.com', password: 'password', is_admin: true)
+
+#Seed a general survey
+Survey.create(name: 'General Survey', version: 1, enable_flg: 1, language_avaliable: 'English')
