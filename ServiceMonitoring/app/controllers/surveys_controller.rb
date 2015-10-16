@@ -77,6 +77,11 @@ class SurveysController < ApplicationController
     end
   end
 
+  def generate_url
+    @generate_url = request.protocol + request.raw_host_with_port + "/feedbacks/new?survey=" + params[:id]
+    @survey = Survey.find(params[:id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_survey

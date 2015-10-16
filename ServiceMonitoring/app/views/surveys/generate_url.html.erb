@@ -1,0 +1,12 @@
+<div class="col-md-offset-2 col-md-8 col-md-offset-2"%>
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h2>Survey <%= @survey.name %>'s Url</h2></div>
+    <div class="panel-body">
+<p>
+<%= @generate_url %>
+</p>
+    </div>
+  </div>
+  <%= link_to 'Back', surveys_path %>
+</div>
