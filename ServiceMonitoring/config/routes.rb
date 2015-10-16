@@ -9,7 +9,12 @@ Rails.application.routes.draw do
 
   resources :feedbacks
 
-  resources :surveys do 
+  resources :surveys do
+    member do
+      get 'excel'
+      get 'pdf'
+      get 'generate_url'
+    end
     resources :questions do
       resources :question_by_languages
     end
