@@ -22,19 +22,24 @@
       <p>
         <strong>Question</strong>
         <%= question.title %>
+        <strong>Answer</strong> 
         <% @answers.each do |answer| %>
         <% if answer.question_id == question.id %>
-          <strong>Answer</strong>
-          <% @anyoptions = 0%>
-          <% if question.q_type == 'choice' %>
+          <% if question.q_type == '1' %>
             <% question.question_options.each do |option| %>        
               <% if option.id == answer.content.to_i %>
                     <%= option.option %>
-                    <%@anyoptions = 1%>
                 <%end%>
             <%end%>
             <%end%>
-            <% if question.q_type == 'text' || @anyoptions == 0%>
+            <%if question.q_type == '2' && answer.content != nil %>
+              <% question.question_options.each do |option| %>        
+                <% if option.id == answer.content.to_i %>
+                    <%= option.option %>
+                <%end%>
+              <%end%>
+            <%end%>
+            <% if question.q_type == '3' %>
               <%= answer.content %>
             <%end%>
         <% end %>

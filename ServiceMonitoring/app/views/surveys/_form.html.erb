@@ -32,6 +32,7 @@
     <%= f.text_field :language_avaliable %>
   </div>
   <div>
+      <%= f.label "questions" %>
     <%= f.fields_for :questions do |builder| %>
       <%= render "question_fields", :f => builder %>
     <% end %>
