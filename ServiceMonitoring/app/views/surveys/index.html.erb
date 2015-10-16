@@ -3,18 +3,17 @@
   <div class="panel-heading"><h2>Listing Surveys</h2></div>
     <div class="panel-body">
     <!-- Table -->
-    <table class="table">
+    <table class="table" style="text-align:center">
       <thead>
         <tr>
           <th>Name</th>
           <th>Version</th>
-          <th>Enable flg</th>
-          <th>Provider name</th>
-          <th>Language avaliable</th>
-          <th colspan="4" class="center">Actions</th>
+          <th>Enabled?</th>
+          <th>Provider Name</th>
+          <th>Language Available</th>
+          <th colspan="7" class="center">Actions</th>
         </tr>
       </thead>
-
       <tbody>
         <% @surveys.each do |survey| %>
           <tr>
@@ -23,13 +22,13 @@
             <td><%= survey.enable_flg %></td>
             <td><%= survey.provider_name %></td>
             <td><%= survey.language_avaliable %></td>
-            <td><%= link_to "Send Url", generate_url_survey_path(:id =>survey[:id]) %> </td>
+            <td><%= link_to "Generate Url", generate_url_survey_path(:id =>survey[:id]) %> </td>
             <td><%= link_to "New Feedback", new_feedback_path(:survey =>survey) %> </td>
             <td><%= link_to 'Show', survey %></td>
             <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
             <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <td><%= link_to 'Get Excel Report',excel_survey_path(survey, :format => 'xls') %></td>
-            <td><%= link_to 'Get PDF Report', pdf_survey_path(survey, :format => 'pdf')%></td>>
+            <td><%= link_to 'Get PDF Report', pdf_survey_path(survey, :format => 'pdf')%></td>
           </tr>
         <% end %>
       </tbody>
