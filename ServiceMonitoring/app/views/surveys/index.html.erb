@@ -28,6 +28,8 @@
             <td><%= link_to 'Show', survey %></td>
             <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
             <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Get Excel Report',excel_survey_path(survey, :format => 'xls') %></td>
+            <td><%= link_to 'Get PDF Report', pdf_survey_path(survey, :format => 'pdf')%></td>>
           </tr>
         <% end %>
       </tbody>
@@ -35,4 +37,5 @@
   </div>
 </div>
 
-<%= link_to 'New Survey', new_survey_path %>
+<%= link_to 'New Survey', new_survey_path %> | 
+<%= link_to 'Go to All Feedbacks', feedbacks_path %>

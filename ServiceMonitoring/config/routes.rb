@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :surveys do
     member do
+      get 'excel'
+      get 'pdf'
       get 'generate_url'
     end
     resources :questions do
