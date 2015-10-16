@@ -1,3 +1,4 @@
+require 'pry'
 class SurveysController < ApplicationController
   before_action :check_signed_in
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
@@ -49,21 +50,33 @@ class SurveysController < ApplicationController
   # PATCH/PUT /surveys/1.json
   def update
     respond_to do |format|
-      Survey.where(name: params[:survey][:name]).each do |survey2|
-        survey2.enable_flg = "0"
-        survey2.save
-      end
-      survey1 = Survey.where(name: params[:survey][:name]).order(version: :desc).first
-      @survey = Survey.new(survey_params)
-      @survey.version = survey1.version.to_i + 1
-      @survey.enable_flg = "1"
-      if @survey.save
-        format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
-        format.json { render :show, status: :ok, location: @survey }
+      if params[:id] == '1'
+        if @survey.update(survey_params)
+          format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
+          format.json { render :show, status: :ok, location: @survey }
+        else
+          format.html { render :edit }
+          format.json { render json: @survey.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
+        Survey.where(name: params[:survey][:name]).each do |survey2|
+          survey2.enable_flg = "0"
+          survey2.save
+        end
+        binding.pry
+        survey1 = Survey.where(name: params[:survey][:name]).order(version: :desc).first
+        @survey = Survey.new(survey_params)
+        @survey.version = survey1.version.to_i + 1
+        @survey.enable_flg = "1"
+        if @survey.save
+          format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
+          format.json { render :show, status: :ok, location: @survey }
+        else
+          format.html { render :edit }
+          format.json { render json: @survey.errors, status: :unprocessable_entity }
+        end
       end
+
     end
   end
 
@@ -176,9 +189,9 @@ class SurveysController < ApplicationController
     def survey_params
       params.require(:survey).permit(:name, :reference_number, :version, :enable_flg, :provider_name, :language_avaliable,
         questions_attributes:
-        [:q_type, :title, :_destroy,
+        [:id, :q_type, :title, :_destroy,
           question_options_attributes:
-            [:option, :_destroy]
+            [:id, :option, :_destroy]
         ])
     end
 
