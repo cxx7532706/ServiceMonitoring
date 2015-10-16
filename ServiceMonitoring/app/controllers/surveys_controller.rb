@@ -49,13 +49,15 @@ class SurveysController < ApplicationController
   # PATCH/PUT /surveys/1.json
   def update
     respond_to do |format|
-      survey1 = Survey.find(params[:id])
-      survey1.enable_flg = "0"
+      Survey.where(name: params[:survey][:name]).each do |survey2|
+        survey2.enable_flg = "0"
+        survey2.save
+      end
+      survey1 = Survey.where(name: params[:survey][:name]).order(version: :desc).first
       @survey = Survey.new(survey_params)
       @survey.version = survey1.version.to_i + 1
       @survey.enable_flg = "1"
       if @survey.save
-        survey1.save
         format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
         format.json { render :show, status: :ok, location: @survey }
       else
