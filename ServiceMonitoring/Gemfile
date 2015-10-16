@@ -23,10 +23,16 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+# Fix the nokogiri issue with ruby 2.2 in windows
+
 gem 'inherited_resources'
 
 # For website authentication
 gem 'devise'
+gem 'bcrypt-ruby', '3.0.1'
+
+# For minitest
+gem 'minitest', '~> 5.8.1'
 
 # To serve static assets and login to Heroku
 gem 'rails_12factor', group: :production

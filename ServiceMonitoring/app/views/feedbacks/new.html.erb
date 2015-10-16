@@ -61,5 +61,10 @@
   <% end %>
   </div>
     </div>
-    <%= link_to 'Back', feedbacks_path %>
+    <%if user_signed_in? %>
+      <%= link_to 'Back to Survey List', surveys_path %>
+    <%end%>
+    <%if user_is_admin? %>
+      | <%= link_to 'Back to All Feedbacks', feedbacks_path %>
+    <%end%>
 </div>

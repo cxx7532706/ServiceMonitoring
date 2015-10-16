@@ -1,6 +1,6 @@
 class FeedbacksController < InheritedResources::Base
-  before_action :check_signed_in
-  before_action :check_admin, :except => [:show, :new, :create]
+  before_action :check_signed_in, :except => [:new, :create]
+  before_action :check_admin, :except => [:new, :create]
 
   def new
     #Create a new feedback
@@ -15,7 +15,7 @@ class FeedbacksController < InheritedResources::Base
     else
       @questions = @survey.questions
     end
-    
+
   end
 
   def create
@@ -57,15 +57,15 @@ class FeedbacksController < InheritedResources::Base
 
   def update
     @ops = params[:chosen_ops]
-    
-    
+
+
   end
 
 
   def show
 
   @feedback = Feedback.find(params[:id])
-  @survey = Survey.find(@feedback.survey_id) 
+  @survey = Survey.find(@feedback.survey_id)
   @answers = @feedback.answers
   if @feedback.survey_id != 1
       @gSurvey = Survey.find("1")
