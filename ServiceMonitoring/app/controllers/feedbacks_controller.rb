@@ -67,7 +67,7 @@ class FeedbacksController < InheritedResources::Base
   @feedback = Feedback.find(params[:id])
   @survey = Survey.find(@feedback.survey_id) 
   @answers = @feedback.answers
-  if @feedback.survey_id != "1"
+  if @feedback.survey_id != 1
       @gSurvey = Survey.find("1")
       @gQuestions = @gSurvey.questions
       @questions = @gQuestions +@survey.questions
