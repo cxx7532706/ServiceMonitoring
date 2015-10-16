@@ -1,14 +1,21 @@
 class FeedbacksController < InheritedResources::Base
   before_action :check_signed_in
-  before_action :check_admin, :except => [:index, :show]
+  # before_action :check_admin, :except => [:index, :show]
 
-	def new
-  	#Create a new feedback
-  	@feedback = Feedback.new
+  def new
+    #Create a new feedback
+    @feedback = Feedback.new
     answer = @feedback.answers.build
-  	#Get the questions for the feedback
-  	@survey = Survey.find(params[:survey])
-  	@questions = @survey.questions
+    #Get the questions for the feedback
+    @survey = Survey.find(params[:survey])
+    if params[:survey] != "1"
+      @gSurvey = Survey.find("1")
+      @gQuestions = @gSurvey.questions
+      @questions = @gQuestions +@survey.questions
+    else
+      @questions = @survey.questions
+    end
+    
   end
 
   def create
@@ -22,7 +29,13 @@ class FeedbacksController < InheritedResources::Base
           @chosen_ops = params[:chosen_ops]
           @answers = @feedback.answers
           @survey = Survey.find(@feedback.survey_id)
-          @questions = @survey.questions
+          if @feedback.survey_id != "1"
+            @gSurvey = Survey.find("1")
+            @gQuestions = @gSurvey.questions
+            @questions = @gQuestions +@survey.questions
+          else
+            @questions = @survey.questions
+          end
           @questions.each do |question|
             if question.q_type == '2'
               question.question_options.each do |option|
@@ -56,17 +69,28 @@ class FeedbacksController < InheritedResources::Base
   def show
 
   @feedback = Feedback.find(params[:id])
-	@survey = Survey.find(@feedback.survey_id) 
-	@answers = @feedback.answers
+  @survey = Survey.find(@feedback.survey_id) 
+  @answers = @feedback.answers
+  if @feedback.survey_id != "1"
+      @gSurvey = Survey.find("1")
+      @gQuestions = @gSurvey.questions
+      @questions = @gQuestions +@survey.questions
+  else
+      @questions = @survey.questions
+  end
 
   end
 
   def destroy
-  	@feedback = Feedback.find(params[:id])
-    @feedback.destroy
-    respond_to do |format|
-      format.html { redirect_to @feedback, notice: 'Feedback was successfully destroyed.' }
-      format.json { head :no_content }
+    @feedback = Feedback.find(params[:id])
+    if params[:id] ="1"
+      redirect_to root_path, alert: 'General Survey Cannot be destroyed'
+    else
+      @feedback.destroy
+      respond_to do |format|
+        format.html { redirect_to @feedback, notice: 'Feedback was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
