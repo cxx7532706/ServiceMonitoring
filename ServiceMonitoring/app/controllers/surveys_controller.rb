@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
   before_action :check_signed_in
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
-  before_action :check_admin, except: [:index, :show]
+  before_action :check_admin, except: [:index, :show, :generate_url]
 
   # GET /surveys
   # GET /surveys.json
@@ -107,7 +107,7 @@ class SurveysController < ApplicationController
         write = Prawn::Document.new(:page_size => 'A4', :page_layout => :portrait)
         write.font "Helvetica"
 
-        write.draw_text "The Reprort of #{@survey.name}", :at => [0,750], :size => 22, :style => :bold
+        write.draw_text "The Report of #{@survey.name}", :at => [0,750], :size => 22, :style => :bold
         write.draw_text "Provided by: #{@survey.provider_name}", :at => [0,700], :size =>16
         write.draw_text "Version: #{@survey.version}", :at => [0,680], :size =>16
         write.draw_text "Language: #{@survey.language_avaliable}", :at => [0,660], :size =>16
@@ -119,9 +119,9 @@ class SurveysController < ApplicationController
           line -= 15
           number += 1
           if question.q_type == '1'
-            type = "Single Answer Mutiple Choises"
+            type = "Single Answer Multiple Choices"
           elsif question.q_type == '2'
-            type = "Mutiple Answers Mutiple Choises"
+            type = "Multiple Answers Multiple Choices"
           elsif question.q_type == '3'
             type = "Text"
           end

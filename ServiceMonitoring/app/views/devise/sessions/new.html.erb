@@ -23,9 +23,6 @@
 
       <div class="actions">
         <%= f.submit "Log in" %>
-        <% unless user_signed_in? %>
-            <%= link_to "Are you an Advisor? Register here.", new_user_path %>
-        <% end %>
       </div>
     <% end %>
 

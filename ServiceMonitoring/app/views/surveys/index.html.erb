@@ -6,15 +6,15 @@
     <table class="table" style="text-align:center">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Version</th>
-          <th>Enabled?</th>
+          <th class="center">Name</th>
+          <th class="center">Version</th>
+          <!--th class="center">Enabled?</th-->
           <th class="center">Provider</th>
-          <th>Language</th>
+          <th class="center">Language</th>
           <% if user_is_admin? %>
             <th colspan="7" class="center">Actions</th>
           <%else%>
-            <th>Actions</th>
+            <th class="center">Actions</th>
           <%end%>
         </tr>
       </thead>
@@ -23,13 +23,13 @@
           <tr>
             <td><%= link_to survey.name, survey%></td>
             <td><%= survey.version %></td>
-            <td>
+            <!--td>
               <%if survey.enable_flg == 0 %>
                 No
               <%else%>
                 Yes
               <%end%>
-            </td>
+            </td-->
             <td><%= survey.provider_name %></td>
             <td><%= survey.language_avaliable %></td>
             <td><%= link_to "Generate Url", generate_url_survey_path(:id =>survey[:id]) %> </td>
@@ -47,7 +47,8 @@
   </div>
 </div>
 
-<%= link_to 'Go to All Feedbacks', feedbacks_path %>
+
 <% if user_is_admin? %>
+<%= link_to 'Go to All Feedbacks', feedbacks_path %>
    | <%= link_to 'New Survey', new_survey_path %>
 <% end %>
