@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><br>Version List</h2></div>
+    <div class="panel-body">
+    <!-- Table -->
+    <table class="table" style="text-align:center">
+      <thead>
+        <tr>
+          <th class="center">Name</th>
+          <th class="center">Version</th>
+          <!--th class="center">Enabled?</th-->
+          <th class="center">Provider</th>
+          <th class="center">Language</th>
+          <th colspan="2" class="center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @surveys.each do |survey| %>
+          <tr>
+            <td><%= link_to survey.name, survey%></td>
+            <td><%= survey.version %></td>
+            <td><%= survey.provider_name %></td>
+            <td><%= survey.language_avaliable %></td>
+            <%if survey.enable_flg == 0 %>
+                <td><%= link_to 'Enable', enable_version_survey_path(:id =>survey[:id])%></td>
+            <%else%>
+                <td></td>
+            <%end%>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%= link_to 'Back', surveys_path %>

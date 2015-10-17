@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       get 'excel'
       get 'pdf'
       get 'generate_url'
+      get 'version_list'
+      get 'enable_version'
     end
     resources :questions do
       resources :question_by_languages

@@ -12,7 +12,7 @@
           <th class="center">Provider</th>
           <th class="center">Language</th>
           <% if user_is_admin? %>
-            <th colspan="7" class="center">Actions</th>
+            <th colspan="8" class="center">Actions</th>
           <%else%>
             <th colspan="2" class="center">Actions</th>
           <%end%>
@@ -36,6 +36,7 @@
             <td><%= link_to 'New Feedback', new_feedback_path(:survey =>survey) %> </td>
             <% if user_is_admin? %>
                 <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
+                <td><%= link_to 'Enable other version', version_list_survey_path(:id =>survey[:id]) %> </td>
                 <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure you want to delete this survey? Associated feedbacks will also be deleted.' } %></td>
                 <td><%= link_to 'Get Excel Report',excel_survey_path(survey, :format => 'xls') %></td>
                 <td><%= link_to 'Get PDF Report', pdf_survey_path(survey, :format => 'pdf')%></td>

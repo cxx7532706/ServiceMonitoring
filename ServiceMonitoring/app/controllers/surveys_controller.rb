@@ -6,7 +6,7 @@ class SurveysController < ApplicationController
   # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = Survey.all
+    @surveys = Survey.where(enable_flg: '1')
   end
 
   # GET /surveys/1
@@ -74,7 +74,6 @@ def update
           format.json { render json: @survey.errors, status: :unprocessable_entity }
         end
       end
-
     end
   end
 
@@ -98,6 +97,23 @@ def update
   def generate_url
     @generate_url = request.protocol + request.raw_host_with_port + "/feedbacks/new?survey=" + params[:id]
     @survey = Survey.find(params[:id])
+  end
+
+  def version_list
+    @survey = Survey.find(params[:id])
+    @surveys = Survey.where(name: @survey.name)
+
+  end
+
+  def enable_version
+    @survey = Survey.find(params[:id])
+    Survey.where(name: @survey.name).each do |survey2|
+      survey2.enable_flg = "0"
+      survey2.save
+    end
+    @survey.enable_flg = '1'
+    @survey.save
+    redirect_to surveys_url
   end
 
   def excel
