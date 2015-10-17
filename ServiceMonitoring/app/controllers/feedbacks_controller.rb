@@ -1,6 +1,6 @@
 class FeedbacksController < InheritedResources::Base
-  before_action :check_signed_in, :except => [:new, :create]
-  before_action :check_admin, :except => [:new, :create]
+  before_action :check_signed_in, :except => [:new, :create, :thanks_page]
+  before_action :check_admin, :except => [:new, :create, :thanks_page]
 
   def new
     #Create a new feedback
@@ -86,7 +86,6 @@ class FeedbacksController < InheritedResources::Base
   end
 
   def thanks_page
-  
   end
 
 
