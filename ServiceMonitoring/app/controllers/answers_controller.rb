@@ -9,11 +9,11 @@ class AnswersController < InheritedResources::Base
     end
 
     def check_signed_in
-      redirect_to root_path, alert: 'You need to sign in.' unless user_signed_in?
+      redirect_to root_path, error: 'You need to sign in.' unless user_signed_in?
     end
 
     def check_admin
-      redirect_to root_path, alert: 'Permission denied.' unless user_is_admin?
+      redirect_to root_path, error: 'Permission denied.' unless user_is_admin?
     end
 end
 

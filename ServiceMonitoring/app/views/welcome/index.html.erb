@@ -7,7 +7,40 @@
 		<small><%= current_user.email %></small>
 	</h1>	
 	<br>
+	<% if user_is_admin? %>
+	    <div class="col-md-4">
+	    <br>
+	    <h3>Manage Surveys</h3>
+	    <br>
+	    <span class="glyphicon glyphicon-list-alt glyphicon-lg" aria-hidden="true"></span>
+	    <br>
+	    <br>
+			<a class="btn btn-default btn-lg" href="/surveys" role="button">Access the Surveys</a>
+	    </div>
+	    <div class="col-md-4">
+	    <br>
+		<h3>Manage Feedbacks</h3>
+	    <br>
+	    <span class="glyphicon glyphicon-search glyphicon-lg" aria-hidden="true"></span>
+	    <br>
+	    <br>
+			<a class="btn btn-default btn-lg" href="/feedbacks" role="button">See all Feedbacks</a>
+	    </div>
+	    <div class="col-md-4">
+	    <br>
+	    <h3>Manage Users</h3>
+	    <br>
+	    <span class="glyphicon glyphicon-user glyphicon-lg" aria-hidden="true"></span>
+	    <br>
+	    <br>
+			<a class="btn btn-default btn-lg" href="/users" role="button">See all Users</a>
+		</div>
+	<%else%>
+	    <span class="glyphicon glyphicon-list-alt glyphicon-lg" aria-hidden="true"></span>
+	    <br>
+	    <br>
 		<a class="btn btn-default btn-lg" href="/surveys" role="button">Access the Surveys</a>
+    <%end%>
     <% else %>
         <br>
 		<small>Please Login to Access the System</small>

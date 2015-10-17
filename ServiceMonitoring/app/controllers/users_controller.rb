@@ -25,18 +25,20 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     @user.save ?
-        redirect_to(root_path, notice: 'Creation successful!') :
-        redirect_to(:back, alert: @user.errors.full_messages.join(', '))
+        redirect_to(root_path, success: 'New Advisor Account Created Successfully!') :
+        redirect_to(:back, error: @user.errors.full_messages.join(', '))
   end
 
   def update
-    # @user.update(user_params)
-    # respond_with(@user)
+     @user.update(user_params)
+     @user.save ?
+        redirect_to(users_path, success: 'Advisor Account Updated!') :
+        redirect_to(:back, error: @user.errors.full_messages.join(', '))
   end
 
   def destroy
-    # @user.destroy
-    # respond_with(@user)
+     @user.destroy
+     redirect_to(users_path, notice: 'Advisor Deleted!')
   end
 
   private

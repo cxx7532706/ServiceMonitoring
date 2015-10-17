@@ -44,7 +44,7 @@ class FeedbacksController < InheritedResources::Base
             end
           end
 
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
+        format.html { redirect_to @feedback, success: 'Feedback was successfully created.' }
         format.json { render json: @feedback, status: :created, location: @feedback }
       else
         format.html { render action: "new" }
@@ -80,7 +80,7 @@ class FeedbacksController < InheritedResources::Base
   def destroy
     @feedback.destroy
     respond_to do |format|
-      format.html { redirect_to @feedback, notice: 'Feedback was successfully destroyed.' }
+      format.html { redirect_to @feedback, success: 'Feedback was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

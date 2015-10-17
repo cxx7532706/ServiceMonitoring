@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :user_is_admin?
+  # to show different types of alerts
+  add_flash_types :success, :error, :notice, :info
 
   # Check whether current user is admin or not
   def user_is_admin?

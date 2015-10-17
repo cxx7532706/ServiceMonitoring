@@ -36,7 +36,7 @@ class SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.save
-        format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
+        format.html { redirect_to @survey, success: 'Survey was successfully created.' }
         format.json { render :show, status: :created, location: @survey }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class SurveysController < ApplicationController
       @survey.version = survey1.version.to_i + 1
       @survey.enable_flg = "1"
       if @survey.save
-        format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
+        format.html { redirect_to @survey, success: 'Survey was successfully updated.' }
         format.json { render :show, status: :ok, location: @survey }
       else
         format.html { render :edit }
@@ -71,7 +71,7 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1.json
   def destroy
     if @survey.id == 1
-      redirect_to surveys_url, alert: 'General Survey cannot be destroyed'
+      redirect_to surveys_url, error: 'General Survey cannot be Destroyed'
     else
       @survey.destroy
       respond_to do |format|
@@ -92,7 +92,7 @@ class SurveysController < ApplicationController
     format.xls {
       send_data(xls_content_for(@survey),
                 :type => "text/excel; charset=utf-8; header=present",
-                :filename => "Report_Survey(#{@survey.name})_#{Time.now.strftime("%Y%m%d")}.xls")
+                :filename => "Survey_Report_(#{@survey.name})_#{Time.now.strftime("%Y%m%d")}.xls")
     }
     format.html  {redirect_to surveys_url}
     end
@@ -103,12 +103,12 @@ class SurveysController < ApplicationController
     @answers = Answer.all
     respond_to do |format|
       format.pdf {
-        filename = "Report_Survey(#{@survey.name})_#{Time.now.strftime("%Y%m%d")}.pdf"
+        filename = "Survey_Report_(#{@survey.name})_#{Time.now.strftime("%Y%m%d")}.pdf"
         write = Prawn::Document.new(:page_size => 'A4', :page_layout => :portrait)
         write.font "Helvetica"
 
         write.draw_text "The Report of #{@survey.name}", :at => [0,750], :size => 22, :style => :bold
-        write.draw_text "Provided by: #{@survey.provider_name}", :at => [0,700], :size =>16
+        write.draw_text "Provider: #{@survey.provider_name}", :at => [0,700], :size =>16
         write.draw_text "Version: #{@survey.version}", :at => [0,680], :size =>16
         write.draw_text "Language: #{@survey.language_avaliable}", :at => [0,660], :size =>16
         write.draw_text "Created time: #{@survey.created_at.to_s}", :at => [0,640], :size =>16
@@ -194,7 +194,7 @@ class SurveysController < ApplicationController
       xls_report = StringIO.new
       book = Spreadsheet::Workbook.new
       @answers = Answer.all
-      sheet1 = book.create_worksheet :name => "Survey"
+      sheet1 = book.create_worksheet :name => "Survey Report"
 
       blue = Spreadsheet::Format.new :color => :blue, :weight => :bold, :size => 10
       sheet1.row(0).default_format = blue
@@ -204,9 +204,9 @@ class SurveysController < ApplicationController
       obj.questions.each do |question|
         sheet1[count_row,0] = question.title
         if question.q_type == '1'
-          sheet1[count_row,1] = "Single Answer Mutiple Choises"
+          sheet1[count_row,1] = "Single Answer Multiple Choice Question"
         elsif question.q_type == '2'
-          sheet1[count_row,1] = "Mutiple Answers Mutiple CHoises"
+          sheet1[count_row,1] = "Mutiple Answers Multiple Choice Question"
         elsif question.q_type == '3'
           sheet1[count_row,1] = "Text"
         end
