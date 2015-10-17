@@ -85,6 +85,9 @@ def update
       redirect_to surveys_url, error: 'General Survey cannot be Destroyed'
     else
       @survey.destroy
+      @survey.feedbacks.each do |feedback|
+        feedback.destroy
+      end
       respond_to do |format|
         format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
         format.json { head :no_content }
