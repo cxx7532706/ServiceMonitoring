@@ -6,18 +6,20 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Reference number</th>
-          <th>Survey</th>
-          <th>Actions</th>
+          <th class="center">Reference number</th>
+          <th class="center">Survey ID</th>
+          <th class="center">Survey Name</th>
+          <th class="center">Actions</th>
         </tr>
       </thead>
 
       <tbody>
         <% @feedbacks.each do |feedback| %>
           <tr>
-            <td><%= feedback.reference_number %></td>
-            <td><%= feedback.survey_id %></td>
-            <td><%= link_to 'Show Details', feedback %></td>
+            <td class="center"><%= feedback.reference_number %></td>
+            <td class="center"><%= feedback.survey_id %></td>
+            <td class="center"><%= Survey.find(feedback.survey_id).name %></td>
+            <td class="center"><%= link_to 'Show Details', feedback %></td>
           </tr>
         <% end %>
       </tbody>
