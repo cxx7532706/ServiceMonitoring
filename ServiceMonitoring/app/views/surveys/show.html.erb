@@ -36,7 +36,7 @@
     </div>
   </div>
   <% if user_is_admin? %>
-      <%= link_to 'Edit', edit_survey_path(@survey) %> |
+      <%= link_to 'Active this', enable_version_survey_path(:id => @survey[:id])%> |
       <%= link_to 'Back', version_list_survey_path(:id => @survey[:id]) %>
   <% end %>
 </div>
