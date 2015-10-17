@@ -46,7 +46,7 @@ class SurveysController < ApplicationController
         end
       else
         @survey = Survey.new(survey_params)
-        @survey.errors.add(:name, ": The name is already exist")
+        flash[:error] = "A Survey with the Name: \"#{params[:survey][:name]}\" already exist"
         format.html { render :new }
         format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
