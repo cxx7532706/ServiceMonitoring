@@ -47,23 +47,34 @@ class SurveysController < ApplicationController
 
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
-  def update
+def update
     respond_to do |format|
-      Survey.where(name: params[:survey][:name]).each do |survey2|
-        survey2.enable_flg = "0"
-        survey2.save
-      end
-      survey1 = Survey.where(name: params[:survey][:name]).order(version: :desc).first
-      @survey = Survey.new(survey_params)
-      @survey.version = survey1.version.to_i + 1
-      @survey.enable_flg = "1"
-      if @survey.save
-        format.html { redirect_to @survey, success: 'Survey was successfully updated.' }
-        format.json { render :show, status: :ok, location: @survey }
+      if params[:id] == '1'
+        if @survey.update(survey_params)
+          format.html { redirect_to @survey, success: 'Survey was successfully updated.' }
+          format.json { render :show, status: :ok, location: @survey }
+        else
+          format.html { render :edit }
+          format.json { render json: @survey.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
+        Survey.where(name: params[:survey][:name]).each do |survey2|
+          survey2.enable_flg = "0"
+          survey2.save
+        end
+        survey1 = Survey.where(name: params[:survey][:name]).order(version: :desc).first
+        @survey = Survey.new(survey_params_update)
+        @survey.version = survey1.version.to_i + 1
+        @survey.enable_flg = "1"
+        if @survey.save
+          format.html { redirect_to @survey, success: 'Survey was successfully updated.' }
+          format.json { render :show, status: :ok, location: @survey }
+        else
+          format.html { render :edit }
+          format.json { render json: @survey.errors, status: :unprocessable_entity }
+        end
       end
+
     end
   end
 
@@ -174,6 +185,16 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
+      params.require(:survey).permit(:name, :reference_number, :version, :enable_flg, :provider_name, :language_avaliable,
+        questions_attributes:
+        [:id, :q_type, :title, :_destroy,
+          question_options_attributes:
+            [:id, :option, :_destroy]
+        ])
+    end
+
+    # for update
+    def survey_params_update
       params.require(:survey).permit(:name, :reference_number, :version, :enable_flg, :provider_name, :language_avaliable,
         questions_attributes:
         [:q_type, :title, :_destroy,
