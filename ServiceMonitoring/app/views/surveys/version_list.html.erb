@@ -21,7 +21,7 @@
             <td><%= survey.version %></td>
             <td><%= survey.provider_name %></td>
             <td><%= survey.language_avaliable %></td>
-            <td><%= link_to 'Show', survey %></td>
+            <td><%= link_to 'Show', show_version_survey_path(:id => survey[:id])%></td>
             <%if survey.enable_flg == 0 %>
                 <td><%= link_to 'Enable', enable_version_survey_path(:id =>survey[:id])%></td>
             <%else%>

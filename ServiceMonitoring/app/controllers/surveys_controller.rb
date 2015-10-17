@@ -105,6 +105,10 @@ def update
 
   end
 
+  def show_version
+    @survey = Survey.find(params[:id])
+  end
+
   def enable_version
     @survey = Survey.find(params[:id])
     Survey.where(name: @survey.name).each do |survey2|

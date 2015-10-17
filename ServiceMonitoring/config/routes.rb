@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'generate_url'
       get 'version_list'
       get 'enable_version'
+      get 'show_version'
     end
     resources :questions do
       resources :question_by_languages
