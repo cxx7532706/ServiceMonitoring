@@ -1,4 +1,3 @@
-require 'pry'
 class SurveysController < ApplicationController
   before_action :check_signed_in
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
@@ -63,9 +62,8 @@ class SurveysController < ApplicationController
           survey2.enable_flg = "0"
           survey2.save
         end
-        binding.pry
         survey1 = Survey.where(name: params[:survey][:name]).order(version: :desc).first
-        @survey = Survey.new(survey_params)
+        @survey = Survey.new(survey_params_update)
         @survey.version = survey1.version.to_i + 1
         @survey.enable_flg = "1"
         if @survey.save
@@ -192,6 +190,16 @@ class SurveysController < ApplicationController
         [:id, :q_type, :title, :_destroy,
           question_options_attributes:
             [:id, :option, :_destroy]
+        ])
+    end
+
+    # for update
+    def survey_params_update
+      params.require(:survey).permit(:name, :reference_number, :version, :enable_flg, :provider_name, :language_avaliable,
+        questions_attributes:
+        [:q_type, :title, :_destroy,
+          question_options_attributes:
+            [:option, :_destroy]
         ])
     end
 
