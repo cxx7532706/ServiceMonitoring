@@ -67,6 +67,11 @@ function change_feedback_reference_number(){
     var reference_number =  $('#feedback_reference_number').val();
     var url = $('#prefix_url').val()+'&reference_number='+reference_number;
     $('#feedback_url').text(url);
+    $("#d_clip_button").show();
+}
+
+function copy_success(){
+    alert('Copy Successful');
 }
 
 $(document).ready(function() {

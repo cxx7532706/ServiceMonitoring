@@ -16,7 +16,11 @@
     <% end %>
     <div class="field">
       <%= f.label :reference_number %><br>
-      <%= f.text_field :reference_number %>
+      <% if @feedback.reference_number? %>
+          <%= f.text_field :reference_number, :readonly => 'true'%>
+      <% else %>
+          <%= f.text_field :reference_number %>
+      <% end %>
     </div>
     <%= f.hidden_field :survey_id, value:@survey.id %>
     <% number = 0%>
@@ -27,8 +31,8 @@
       <%= answer.hidden_field :survey_id, value:@survey.id %>
       <%= answer.hidden_field :question_id, value:question.id %>
   		<div class="field">
-          <% if question.q_type == '1' 
-              type = "Single Answer Multiple Choices" 
+          <% if question.q_type == '1'
+              type = "Single Answer Multiple Choices"
              elsif question.q_type == '2'
               type = "Multiple Answers Multiple Choices"
              elsif question.q_type == '3'
@@ -40,7 +44,7 @@
           <p>
              <% question.question_options.each do |option| %>
              <% option_number += 1%>
-             <p><%= "#{option_number.to_s}) #{option.option}" %> 
+             <p><%= "#{option_number.to_s}) #{option.option}" %>
              <%= answer.radio_button :content, option.id %></p>
           <% end %>
           <p>

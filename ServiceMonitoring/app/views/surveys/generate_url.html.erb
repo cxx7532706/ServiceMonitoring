@@ -11,9 +11,8 @@
         </div>
         <div class='field'>
             <p id='feedback_url'></p>
-            <button class='my_clip_button' data-clipboard-target='feedback_url' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button' title='Click me to copy to clipboard.'>
-                <b>Copy To Clipboard...</b>
-            </button>
+            <input type='button' value='Copy To Clipboard' class='my_clip_button' style='display: none;' onclick='copy_success()'
+            data-clipboard-target='feedback_url' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button' title='Click me to copy to clipboard.'>
         </div>
     </div>
 </div>
