@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     @user.save ?
-        redirect_to(root_path, success: 'New Advisor Account Created Successfully!') :
+        redirect_to(users_path, success: 'New Advisor Account Created Successfully!') :
         redirect_to(:back, error: @user.errors.full_messages.join(', '))
   end
 

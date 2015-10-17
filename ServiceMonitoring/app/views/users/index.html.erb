@@ -15,11 +15,11 @@
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.email %></td>
-            <td><%= user.is_admin %></td>
+            <td class="center"><%= user.email %></td>
+            <td class="center"><%= user.is_admin %></td>
             <% unless user.is_admin %>
-            <td><%= link_to 'Edit', edit_user_path(user) %></td>
-            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="center"><%= link_to 'Edit', edit_user_path(user) %></td>
+            <td class="center"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <%else%>
             <td class="center" colspan="2">Cannot modify an Administrator's account.</td>
             <%end%>
