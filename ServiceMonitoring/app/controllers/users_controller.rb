@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :check_signed_in
   before_action :check_admin
+  before_action :deny_access, only: [:show]
 
   # respond_to :html
 
@@ -55,6 +56,10 @@ class UsersController < ApplicationController
     end
 
     def check_admin
-      redirect_to root_path, alert: 'Permission denied.' unless user_is_admin?
+      redirect_to root_path, error: 'Permission denied.' unless user_is_admin?
+    end
+
+    def deny_access
+      redirect_to root_path, error: 'Permission denied.'
     end
 end

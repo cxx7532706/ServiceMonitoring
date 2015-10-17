@@ -1,7 +1,7 @@
 <div class="col-md-offset-2 col-md-8 col-md-offset-2"%>
   <div class="panel panel-default">
+  <div class="panel-heading"><h2><span class="glyphicon glyphicon-search" aria-hidden="true"></span><br>New Feedback</h2></div>
     <div class="panel-body">
-    <h1>New Feedback</h1>
 
     <%= form_for(@feedback) do |f| %>
       <% if @feedback.errors.any? %>
@@ -34,7 +34,7 @@
              elsif question.q_type == '3'
               type = "Text"
              end %>
-    			<b> <%= "#{number.to_s}.#{question.title} (#{type})" %> </b>
+    			<b> <%= "#{number.to_s}. #{question.title} (#{type})" %> </b>
           <% option_number = 0 %>
           <% if question.q_type == '1' %>
           <p>

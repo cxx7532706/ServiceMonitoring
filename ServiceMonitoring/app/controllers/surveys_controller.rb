@@ -89,7 +89,7 @@ def update
         feedback.destroy
       end
       respond_to do |format|
-        format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
+        format.html { redirect_to surveys_url, notice: 'Survey and feedbacks associated with it was successfully destroyed.' }
         format.json { head :no_content }
       end
     end

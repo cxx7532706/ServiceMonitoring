@@ -1,8 +1,7 @@
 <div class="col-md-offset-3 col-md-6 col-md-offset-3"%>
   <div class="panel panel-default">
+    <div class="panel-heading"><h2>Login</h2></div>
     <div class="panel-body">
-    <h1>Log in</h1>
-
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email %><br />
@@ -15,8 +14,8 @@
       </div>
 
       <% if devise_mapping.rememberable? -%>
-        <div class="field">
-          <%= f.check_box :remember_me %>
+        <div class="field center">
+          <%= f.check_box :remember_me, :style => "width: auto !important"%>
           <%= f.label :remember_me %>
         </div>
       <% end -%>
