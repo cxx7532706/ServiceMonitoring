@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_signed_in, :only => [:new, :create]
-  before_action :check_admin, :only => [:new, :create]
+  before_action :check_signed_in
+  before_action :check_admin
 
   # respond_to :html
 
