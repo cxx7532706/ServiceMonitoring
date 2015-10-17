@@ -26,7 +26,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Fix the nokogiri issue with ruby 2.2 in windows
 
 gem 'inherited_resources'
-
+# copy text on clopboard
+gem 'zeroclipboard-rails'
 # For website authentication
 gem 'devise'
 gem 'bcrypt-ruby', '3.0.1'

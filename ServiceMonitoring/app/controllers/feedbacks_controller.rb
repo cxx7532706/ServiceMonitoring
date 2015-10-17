@@ -5,6 +5,7 @@ class FeedbacksController < InheritedResources::Base
   def new
     #Create a new feedback
     @feedback = Feedback.new
+    @feedback.reference_number = params[:reference_number]
     answer = @feedback.answers.build
     #Get the questions for the feedback
     @survey = Survey.find(params[:survey])

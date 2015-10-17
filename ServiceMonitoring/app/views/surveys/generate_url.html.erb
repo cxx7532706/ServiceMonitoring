@@ -1,12 +1,21 @@
 <div class="col-md-offset-2 col-md-8 col-md-offset-2"%>
-  <div class="panel panel-default">
+<div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading"><h2><span class="glyphicon glyphicon-link" aria-hidden="true"></span><br>URL for <%= @survey.name %></h2></div>
     <div class="panel-body">
-<p>
-<%= @generate_url %>
-</p>
+        <div class="field">
+            <label for="feedback_reference_number">Reference number</label><br>
+            <input type="text" id="feedback_reference_number" />
+            <input type="hidden" id="prefix_url" value='<%= @generate_url %>'/>
+            <input type="button" name="commit" value="Generate URL" onclick="change_feedback_reference_number()"/>
+        </div>
+        <div class='field'>
+            <p id='feedback_url'></p>
+            <button class='my_clip_button' data-clipboard-target='feedback_url' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button' title='Click me to copy to clipboard.'>
+                <b>Copy To Clipboard...</b>
+            </button>
+        </div>
     </div>
-  </div>
-  <%= link_to 'Back', surveys_path %>
+</div>
+<%= link_to 'Back', surveys_path %>
 </div>

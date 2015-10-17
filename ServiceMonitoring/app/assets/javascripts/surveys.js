@@ -63,6 +63,12 @@ function disabled_change(div_obj, flg) {
     div_obj.find(':input').attr('disabled', flg);
 }
 
+function change_feedback_reference_number(){
+    var reference_number =  $('#feedback_reference_number').val();
+    var url = $('#prefix_url').val()+'&reference_number='+reference_number;
+    $('#feedback_url').text(url);
+}
+
 $(document).ready(function() {
     $('#survey_form').submit(function() {
         $(".fields select").each(function(){
@@ -85,6 +91,6 @@ $(document).ready(function() {
                 show_div($(this).siblings(".text_answer").first());
             }
         });
-
     });
+    var clip = new ZeroClipboard($("#d_clip_button"));
 });
