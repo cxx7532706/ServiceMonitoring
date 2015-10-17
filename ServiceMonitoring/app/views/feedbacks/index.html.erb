@@ -14,14 +14,20 @@
       </thead>
 
       <tbody>
-        <% @feedbacks.each do |feedback| %>
+        <%if @feedbacks.empty?%>
           <tr>
-            <td class="center"><%= feedback.reference_number %></td>
-            <td class="center"><%= feedback.survey_id %></td>
-            <td class="center"><%= Survey.find(feedback.survey_id).name %></td>
-            <td class="center"><%= link_to 'Show Details', feedback %></td>
+          <td class="center" colspan="4">Sorry, there are no feedbacks yet, see the <%= link_to 'List of Surveys', surveys_path %> to initialize a new feedback!</td>
           </tr>
-        <% end %>
+        <%else%>
+          <% @feedbacks.each do |feedback| %>
+            <tr>
+              <td class="center"><%= feedback.reference_number %></td>
+              <td class="center"><%= feedback.survey_id %></td>
+              <td class="center"><%= Survey.find(feedback.survey_id).name %></td>
+              <td class="center"><%= link_to 'Show Details', feedback %></td>
+            </tr>
+          <% end %>
+        <%end%>
       </tbody>
     </table>
 </div>
