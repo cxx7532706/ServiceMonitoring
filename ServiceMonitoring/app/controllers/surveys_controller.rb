@@ -1,3 +1,4 @@
+require 'pry'
 class SurveysController < ApplicationController
   before_action :check_signed_in
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
@@ -30,15 +31,22 @@ class SurveysController < ApplicationController
   # POST /surveys
   # POST /surveys.json
   def create
-    @survey = Survey.new(survey_params)
-    @survey.version = "1"
-    @survey.enable_flg = "1"
-
     respond_to do |format|
-      if @survey.save
-        format.html { redirect_to @survey, success: 'Survey was successfully created.' }
-        format.json { render :show, status: :created, location: @survey }
+      survey_list = Survey.where(name: params[:survey][:name])
+      if survey_list.length == 0
+        @survey = Survey.new(survey_params)
+        @survey.version = "1"
+        @survey.enable_flg = "1"
+        if @survey.save
+          format.html { redirect_to @survey, success: 'Survey was successfully created.' }
+          format.json { render :show, status: :created, location: @survey }
+        else
+          format.html { render :new }
+          format.json { render json: @survey.errors, status: :unprocessable_entity }
+        end
       else
+        @survey = Survey.new(survey_params)
+        @survey.errors.add(:name, ": The name is already exist")
         format.html { render :new }
         format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
