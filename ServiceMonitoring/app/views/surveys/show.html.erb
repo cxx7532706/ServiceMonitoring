@@ -37,6 +37,6 @@
   </div>
   <% if user_is_admin? %>
       <%= link_to 'Edit', edit_survey_path(@survey) %> |
-      <%= link_to 'Back', surveys_path %>
+      <%= link_to 'Back', version_list_survey_path(:id => @survey[:id]) %>
   <% end %>
 </div>

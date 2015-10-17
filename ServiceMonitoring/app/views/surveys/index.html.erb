@@ -32,11 +32,11 @@
             </td-->
             <td><%= survey.provider_name %></td>
             <td><%= survey.language_avaliable %></td>
-            <td><%= link_to 'Generate Url', generate_url_survey_path(:id =>survey[:id]) %> </td>
+            <td><%= link_to 'Generate Url', generate_url_survey_path(:id => survey[:id]) %> </td>
             <td><%= link_to 'New Feedback', new_feedback_path(:survey =>survey) %> </td>
             <% if user_is_admin? %>
                 <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-                <td><%= link_to 'Change Version', version_list_survey_path(:id =>survey[:id]) %> </td>
+                <td><%= link_to 'Change Version', version_list_survey_path(:id => survey[:id]) %> </td>
                 <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure you want to delete this survey? Associated feedbacks will also be deleted.' } %></td>
                 <td><%= link_to 'Get Excel Report',excel_survey_path(survey, :format => 'xls') %></td>
                 <td><%= link_to 'Get PDF Report', pdf_survey_path(survey, :format => 'pdf')%></td>
