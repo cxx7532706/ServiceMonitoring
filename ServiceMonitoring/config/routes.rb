@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   end
   resources :users
 
-  resources :feedbacks
+  resources :feedbacks do
+    member do
+      get 'thanks_page'
+    end
+  end
 
   resources :surveys do
     member do

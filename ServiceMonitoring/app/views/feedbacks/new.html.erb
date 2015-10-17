@@ -19,18 +19,28 @@
       <%= f.text_field :reference_number %>
     </div>
     <%= f.hidden_field :survey_id, value:@survey.id %>
+    <% number = 0%>
     <% for question in @questions %>
+      <% number += 1 %>
     	<%= f.fields_for :answers do |answer| %>
     	<div class="answer_fields">
       <%= answer.hidden_field :survey_id, value:@survey.id %>
       <%= answer.hidden_field :question_id, value:question.id %>
   		<div class="field">
-    			<%= question.title %>
-
+          <% if question.q_type == '1' 
+              type = "Single Answer Multiple Choices" 
+             elsif question.q_type == '2'
+              type = "Multiple Answers Multiple Choices"
+             elsif question.q_type == '3'
+              type = "Text"
+             end %>
+    			<b> <%= "#{number.to_s}.#{question.title} (#{type})" %> </b>
+          <% option_number = 0 %>
           <% if question.q_type == '1' %>
           <p>
              <% question.question_options.each do |option| %>
-             <p><%= option.option %> 
+             <% option_number += 1%>
+             <p><%= "#{option_number.to_s}) #{option.option}" %> 
              <%= answer.radio_button :content, option.id %></p>
           <% end %>
           <p>

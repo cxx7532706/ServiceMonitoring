@@ -44,7 +44,7 @@ class FeedbacksController < InheritedResources::Base
             end
           end
 
-        format.html { redirect_to @feedback, success: 'Feedback was successfully created.' }
+        format.html { redirect_to thanks_page_feedback_path(@feedback), success: 'Feedback was successfully created.' }
         format.json { render json: @feedback, status: :created, location: @feedback }
       else
         format.html { render action: "new" }
@@ -84,6 +84,11 @@ class FeedbacksController < InheritedResources::Base
       format.json { head :no_content }
     end
   end
+
+  def thanks_page
+  
+  end
+
 
 
   private
