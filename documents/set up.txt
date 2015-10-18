@@ -1,4 +1,0 @@
-heroku postgre
-https://devcenter.heroku.com/categories/heroku-postgres
-mac rails
-https://gorails.com/setup/osx/10.10-yosemite
